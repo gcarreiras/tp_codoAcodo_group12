@@ -11,6 +11,9 @@ def createUser(request):
         'form': UserCreationForm
     })
 
+def signup(request):
+    return render(request, 'signup.html')
+
 def accesories(request):
     return render(request, 'accesories.html')
 
