@@ -19,5 +19,10 @@ from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index)
+    path('', views.index),
+    path('createuser/', views.createUser),
+    path('accesories/', views.accesories),
+    path('cars/', views.cars),
+    path('contact/', views.contact),
+    path('login/', views.login),
 ]
