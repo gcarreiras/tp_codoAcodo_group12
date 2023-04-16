@@ -1,7 +1,33 @@
-{% include 'header.html' %}
+{% extends './base.html' %}
+{% load static %}
 
-<h1>
-    landing page
-</h1>
 
-{% include 'footer.html' %}
+{% block content %}
+    <div class="presentation">
+        <div class="intro">
+            <p>Buscas el auto de tus sueños?...</p>
+            <h1>El <span style="color:#E53114 ">mejor</span> precio para tu 0km</h1>
+            <p>Amplia selección de vehiculos, las mejores marcas del mercado. Desde deportivos hasta familiares, tenemos el vehículo perfecto para vos. No te pierdas la oportunidad de conducir el auto de tus sueños, ¡visítanos ahora!</p>
+            <div>
+                <span><button class="boton" id="conoce_mas">Conoce mas</button></span>
+                <span><a href="#">Accesorios Originales</a></span>
+            </div>
+        </div>
+        <div id="big_car">
+            <img id="orange_car" src="static/img/auto_naranja.png" alt="car_notfound">
+        </div>
+    </div>
+    <!-- </section> -->
+
+    <a id="vehiculos"></a>
+    <section class="section" id="section 2">
+        <div class="container_logos">
+            <span class="marcas1"></span>
+            <span class="marcas2"></span>
+            <span class="marcas3"></span>
+        </div>
+    </section>
+{% endblock %}
+
+</body>
+</html>
