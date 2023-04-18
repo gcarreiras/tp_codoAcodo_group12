@@ -1,0 +1,221 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans";
+}
+
+.footerAcc{
+    color: aliceblue;
+}
+
+html{
+    scroll-behavior: smooth; 
+}
+
+li {
+    display: inline;
+    text-decoration: none;
+    margin-right: 100px;
+}
+
+.nav_container{
+    display: flex;
+    height: 8vh;
+    justify-content: space-between;
+    align-items: center;
+    gap: 200px;
+}
+
+.presentation {
+    /*background-color: yellow;*/
+    display: flex;
+    height: 100vh;
+    width: 95vw;
+}
+
+.intro{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    margin-left: 8vw;
+}
+
+#big_car{
+    height: 100%;
+    width: 50%;
+}
+
+#orange_car{
+    width: 100%;
+    margin-top: 20%;
+}
+
+h1{
+    font-size: 10vh;
+}
+
+#logo{
+    width: 5vw;
+    margin-left: 100px;
+}
+
+.boton {
+    height: 3vw;
+    width: 8vw;
+    margin-right: 100px ;
+    background-color: #E53114;
+    color: white;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.nav_items, li{
+    font-size: large;
+}
+
+#conoce_mas{
+    margin-top: 5vw;
+}
+
+.login{
+    font-size: large;
+}
+
+.section{
+    display: flex;
+    background-color: #E6E6E6;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container_logos{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+}
+
+.container_logos :nth-child(n){
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.marcas1, .marcas2, .marcas3, .marcas4{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    cursor: pointer;
+}
+
+.marcas1{
+    background-image: url("../img/chevrolet_logo.png");
+
+}
+
+.marcas2{
+    background-image: url("../img/ford_logo.png");
+}
+
+.marcas3{
+    background-image: url("../img/volkswagen_logo.png");
+}
+
+#copyright{
+    font-size: medium;
+    text-align: center;
+}
+
+footer{
+    /* bottom: 0; */
+    background-color: yellow;
+}
+
+.foot {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* define 4 columnas de igual tamaño */
+    grid-template-rows: repeat(4, 1fr); /* define 4 filas de igual tamaño */
+    gap: 10px;
+    height: 200px; /*altura del contenedor */
+  }
+  
+  .item {
+    /* background-color: #ccc; */
+     /* border: 1px solid #000;  */
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  #suscribirse{
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+/* Responsive */
+
+@media only screen and (max-width: 800px){
+    .nav_container{
+        max-width: 100vw;
+        gap: 0;
+        height: 15vh;
+    }
+    #logo{
+        margin: 7vw;
+        width: 15vw;
+    }
+    /* Menu acordeon *Pendiente* */
+    .nav_items{
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    li{
+        margin-right: 2vw;
+    }
+    .botones_login{
+        align-self: center;
+    }
+    h1{
+        font-size: 5vh;
+    }
+    .presentation{
+        flex-direction: column;
+    }
+    .boton{
+        margin: 20px;
+        height: 15vw;
+        width: 30vw;
+    }
+    .intro{
+        width: 100%;
+        margin: auto;
+        padding: 10px;
+    }
+    #big_car{
+        width: 100%;
+    }
+
+    /*  FOOTER */
+    .foot{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    #suscribirse{
+        margin: 4px auto;
+    }
+
+}
+
