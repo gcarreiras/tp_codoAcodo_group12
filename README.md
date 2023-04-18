@@ -2,7 +2,7 @@
 # Proyecto Integrador Grupal en Django
 # Comision 23317
 # Integrantes:
-# - Carreriras Gaston
+# - Carreiras Gaston
 # - Castilla Martin
 # - Cisneros Alexander
 # - Gramajo Alejandro
