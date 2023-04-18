@@ -15,7 +15,7 @@ def signup(request):
     return render(request, 'signup.html')
 
 def accesories(request):
-    return render(request, 'accesories.html')
+    return render(request, './accesories/accesories.html')
 
 def cars(request):
     return render(request, 'cars.html')
