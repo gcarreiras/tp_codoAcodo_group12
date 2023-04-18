@@ -24,6 +24,7 @@ li {
     justify-content: space-between;
     align-items: center;
     gap: 200px;
+    background-color: #E53114;
 }
 
 .presentation {
@@ -117,7 +118,7 @@ h1{
 
 footer{
     /* bottom: 0; */
-    background-color: yellow;
+    background-color: #e53114;
 }
 
 .foot {
@@ -134,6 +135,7 @@ footer{
     text-align: center;
     font-size: 15px;
     padding: 20px;
+    border-radius: 3%;
   }
 
   #suscribirse{

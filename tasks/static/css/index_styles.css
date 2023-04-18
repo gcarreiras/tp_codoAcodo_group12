@@ -15,6 +15,8 @@ li {
     margin-right: 100px;
 }
 
+
+
 .nav_container{
     display: flex;
     height: 8vh;
@@ -22,6 +24,7 @@ li {
     align-items: center;
     gap: 200px;
 }
+
 
 .presentation {
     /*background-color: yellow;*/
@@ -128,11 +131,19 @@ h1{
     font-size: medium;
     text-align: center;
 }
+.wrapper {
+    min-height: calc(100% - 4rem);
+  }
 
 footer{
     /* bottom: 0; */
-    background-color: yellow;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 16rem;
+    background-color: #E53114;
 }
+
 
 .foot {
     display: grid;
@@ -140,6 +151,8 @@ footer{
     grid-template-rows: repeat(4, 1fr); /* define 4 filas de igual tamaño */
     gap: 10px;
     height: 200px; /*altura del contenedor */
+    background-color: #e53114;
+    
   }
   
   .item {
@@ -148,6 +161,7 @@ footer{
     text-align: center;
     font-size: 15px;
     padding: 20px;
+    border-radius: 50%;
   }
 
   #suscribirse{
