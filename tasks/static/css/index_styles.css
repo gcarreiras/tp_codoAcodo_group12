@@ -163,7 +163,12 @@ footer{
     padding: 20px;
     border-radius: 50%;
   }
-
+.suscription{
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    border-radius: 50%;
+}
   #suscribirse{
     display: block;
   }
