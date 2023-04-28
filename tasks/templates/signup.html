@@ -1,8 +1,39 @@
-{% include 'header.html' %}
+{% extends './base.html' %}
+{% load static %}
 
-<h1>
-    se ha registrado con exito.... ponele
-</h1>
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css\signup_styles.css' %}">
+</head>
+
+<form action="" class="formulario_registro">
+    <div class="contenedor_formulario">
+      <h1>Registro</h1>
+      <p>Por favor completar los datos para crear una cuenta.</p>
+      <hr>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Ingresa Email" name="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Ingresa Password" name="psw" required>
+  
+      <label for="psw-repeat"><b>Repeti Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+  
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+  
+      <p>Creando una cuenta aceptas  <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+  
+      <div class="clearfix">
+        <button type="button" class="btn_reg cancelbtn">Cancel</button>
+        <button type="submit" class="btn_reg signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form> 
 
 
-{% include 'footer.html' %}
+{% endblock %}
