@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./header.css">
+    <!--<link rel="stylesheet" href="./header.css"> -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+
 </head>
 
 <header>
@@ -24,7 +26,7 @@
         </nav>
         <div class="botones_login">
             <li>Iniciar Sesion</li> 
-            <button class="boton">Registrate</button>
+            <button class="boton"><a href= "{% url 'signupp' %}">Registrate</a></button>
         </div>
     </div>
 

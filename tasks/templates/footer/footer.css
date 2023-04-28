@@ -142,6 +142,7 @@ footer{
     width: 100%;
     height: 16rem;
     background-color: #E53114;
+    margin-top: 10px;
 }
 
 
@@ -228,6 +229,11 @@ footer{
         flex-direction: column;
         height: auto;
     }
+    footer{
+        margin-top: 10px;
+        bottom: auto;
+        background-color: aqua;
+    } 
     #suscribirse{
         margin: 4px auto;
     }
