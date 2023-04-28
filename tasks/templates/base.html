@@ -12,62 +12,18 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-    <header>
-        <div class="nav_container">
-            <span>
-                <img src="static/img/logo.png" alt="no_logo" id="logo">
-            </span>
-            <nav class="nav_items">
-                <li>Home</li>
-                <li><a href="#vehiculos">Vehiculos</a></li>
-                <li>Accesorios</li>
-                <li>Contactanos</li> 
-            </nav>
-            <div class="botones_login">
-                <li>Iniciar Sesion</li> 
-                <button class="boton">Registrate</button>
-            </div>
-        </div>
-    </header>
-    
+   
+    {% include './header/header.html' %} 
+
     <main>
+
         {% block content %} {% endblock %}
+    
     </main>
     
-    <footer>
-        <div class="foot">
-            <div class="item" id="item1">
-                <h2>Contacto</h2>
-                <p>Ofrecemos una gran varierdad de vehiculos para cubrir las necesidades de cada conductor</p>
-                <div><ion-icon name="call-outline"></ion-icon>15755046</div>
-                <div><ion-icon name="mail-outline"></ion-icon>cualquiera@gmail.com</div>
-            </div>
-            <div class="item">
-                <h3>Empresa</h3>
-                <p>Sucursales</p>
-                <p>Nuestras redes</p>
-                <ion-icon name="logo-facebook"></ion-icon>
-                <ion-icon name="logo-instagram"></ion-icon>
-                <ion-icon name="logo-twitter"></ion-icon>
-            </div>
-            <div class="item">
-                <h4>Horarios</h4>
-                <p>Lunes a viernes</p>
-                <p>9:00 a 21:00</p>
-                <p>Sabados</p>
-                <p>9:00 a 13:00</p>
-                <p>Domingos cerrado</p>
-            </div>
-            <div class="item">
-                <h5>Suscripcion</h5>
-                <p>Suscribite y recibi al instante todas las novedades</p>
-                <input type="mail">
-                <button id="suscribirse">Registrate</button>
-            </div>
-        </div>
-        <div id="copyright">
-            <p>Codo a Codo 2023. Todos los derechos reservados ®</p>
-        </div>
-    </footer>
+    {% include './footer/footer.html' %}
+    
 </body>
+
+
 </html>
