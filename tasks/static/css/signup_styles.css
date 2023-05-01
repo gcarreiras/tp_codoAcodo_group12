@@ -8,16 +8,16 @@
     background-color: #ddd;
 }
 
-input[type=text], input[type=password] {
-    width: 100%;
+.inputs {
+    width: 90%;
     padding: 15px;
     margin: 5px 0 22px 0;
-    display: inline-block;
+    display: block;
     border: none;
     background: #f1f1f1;
 }
   
-input[type=text]:focus, input[type=password]:focus {
+.inputs:focus {
     background-color: #ddd;
     outline: none;
 }
