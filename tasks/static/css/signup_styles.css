@@ -46,10 +46,16 @@ button:hover {
     padding: 14px 20px;
     background-color: #f44336;
 }
+
+.signupbtn{
+    padding: 14px 20px;
+    background-color: #04AA6D;
+}
   
 .cancelbtn, .signupbtn {
     float: left;
-    width: 50%;
+    width: 45%;
+    margin: 25px 2.5%;
 }
   
 .clearfix::after {

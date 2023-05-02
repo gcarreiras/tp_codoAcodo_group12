@@ -8,9 +8,13 @@
   <link rel="stylesheet" href="{% static 'css\signup_styles.css' %}">
 </head>
 
-<form action="" method="POST" class="formulario_registro">
+<div class="contenedor_formulario">
+  <form action="" method="POST" class="formulario_registro">
 
   {% csrf_token %}
+  
+
+  
   <h2> Registro </h2>
 
   {% for field in form %}
@@ -30,10 +34,10 @@
   {% endfor %}
 
   <!-- {{ form.as_p }} -->
-  <input type="reset" value="Limpiar">
-  <input type="submit" value="Registrar">
+  <input type="reset" value="Limpiar" class="cancelbtn">
+  <input type="submit" value="Registrar" class="signupbtn">
 
-</form> 
-
+  </form> 
+</div>
 
 {% endblock content %}
