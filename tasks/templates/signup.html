@@ -9,15 +9,14 @@
 </head>
 
 <div class="contenedor_formulario">
-  <form action="" method="POST" class="formulario_registro">
 
-  {% csrf_token %}
-  
-
-  
   <h2> Registro </h2>
 
-  {% for field in form %}
+  <form action="{% url 'signup' %}" method="POST" class="formulario_registro">
+
+  {% csrf_token %}
+
+  {% for fields in form %}
 
   <p>
       {%  if field.errors %}
@@ -29,11 +28,11 @@
       {% endif %}
       {{ field.label_tag }} {{ field }}
 
-
   </p>
   {% endfor %}
 
-  <!-- {{ form.as_p }} -->
+  {{ form.as_p }}
+  
   <input type="reset" value="Limpiar" class="cancelbtn">
   <input type="submit" value="Registrar" class="signupbtn">
 

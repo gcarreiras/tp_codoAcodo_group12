@@ -19,14 +19,14 @@
             <img src="../../static/img/logo.png" alt="no_logo" id="logo">
         </span>
         <nav class="nav_items">
-            <li>Home</li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href= "{% url 'car' %}">Vehiculos</a></li>
-            <li>Accesorios</li>
-            <li>Contactanos</li> 
+            <li><a href="{% url 'acc' %}">Accesorios</a></li>
+            <li><a href="{% url 'contact' %}">Contactanos</a></li> 
         </nav>
         <div class="botones_login">
             <li>Iniciar Sesion</li> 
-            <button class="boton"><a href= "{% url 'signupp' %}">Registrate</a></button>
+            <button class="boton"><a href= "{% url 'signup' %}">Registrate</a></button>
         </div>
     </div>
 
