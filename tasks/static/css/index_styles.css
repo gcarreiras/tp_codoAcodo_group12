@@ -232,7 +232,6 @@ footer{
     footer{
         position: relative;
         bottom: auto;
-        background-color: aqua;
     }
     #suscribirse{
         margin: 4px auto;
@@ -243,8 +242,7 @@ footer{
 @media only screen and (max-width: 1280px){
     footer{
         margin-top: 10px;
-        position: relative;
         bottom: auto !important;
-        background-color: aqua;
+        height: auto;
     } 
 }

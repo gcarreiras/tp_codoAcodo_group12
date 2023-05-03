@@ -19,11 +19,11 @@ from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('createuser/', views.createUser),
-    path('signup/', views.signup, name='signupp'),
+    path('', views.index, name='index'),
+    #path('createuser/', views.createUser),
+    path('signup/', views.signup, name='signup'),
     path('accesories/', views.accesories, name='acc'),
     path('cars/', views.cars , name='car'),
-    path('contact/', views.contact),
+    path('contact/', views.contact, name='contact'),
     path('login/', views.login),
 ]
