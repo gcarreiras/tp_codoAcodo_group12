@@ -1,13 +1,33 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
-from .forms import RegisterForm
+from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
+from django.urls import reverse
 
 
 
 def index(request):
-    return render(request, 'index.html')
+    contact_form = ContactForm()
+    login_form = LoginForm()
+
+
+    if request.method == "POST":
+        contact_form = ContactForm(request.POST)
+       
+        if contact_form.is_valid():
+            name = contact_form.cleaned_data['name'],
+            email = contact_form.cleaned_data['email'],
+            msg = contact_form.cleaned_data['msg']
+            messages.add_message(request, messages.SUCCESS,'Mensaje enviado correctamente')
+            return redirect(reverse('index') + '#contacto')
+        else:
+            messages.add_message(request, messages.ERROR, 'Ocurrió un error al enviar el mensaje')
+   
+    else:
+        contact_form = ContactForm()
+   
+    return render(request, 'index.html',{'contact_form': contact_form, 'login_form':login_form})
 
 def login_user(request):
     if request.method == "POST":
@@ -54,7 +74,7 @@ def cars(request):
     return render(request, 'cars.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    return render(request, '/index#contact.html')
 
 def login(request):
     return render(request, 'login.html')

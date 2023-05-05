@@ -6,11 +6,11 @@
     <div class="presentation">
         <div class="intro">
             <p>Buscas el auto de tus sueños?...</p>
-            <h1>El <span style="color:#E53114 ">mejor</span> precio para tu 0km</h1>
+            <h1 class="'display-1">El <span style="color:#E53114 ">mejor</span> precio para tu 0km</h1>
             <p>Amplia selección de vehiculos, las mejores marcas del mercado. Desde deportivos hasta familiares, tenemos el vehículo perfecto para vos. No te pierdas la oportunidad de conducir el auto de tus sueños, ¡visítanos ahora!</p>
             <div class="boton_container">
                 <span><button class="boton" id="conoce_mas">Conoce mas</button></span>
-                <span><a href="#">Accesorios Originales</a></span>
+                <span><button class="boton" id="accesorios">Accesorios Originales</button></span>
             </div>
         </div>
         <div id="big_car">
@@ -27,6 +27,34 @@
             <span class="marcas3"></span>
         </div>
     </section>
+
+    <a id="contacto"></a>
+   
+    <div class="titulo_contacto">
+        <h2> Contacta con nuestros vendedores</h2>
+    </div>
+   
+    <div class="contact">
+        {% include 'bootstrap_alerts.html' %}
+        <form action="" method="POST">
+            {% csrf_token %}
+                <p>Nombre</p>
+                    {{ contact_form.name }}
+                <p>Email</p>
+                    {{ contact_form.email }}
+                <p>Mensaje</p>
+                    {{ contact_form.msg }}
+                <p></p>
+
+
+            <div class="form_buttons">
+                <input type="submit" class="btn btn-danger">
+                <input type="reset" class="btn btn-secondary">
+            </div>  
+        </form>
+    </div>
+
+
 {% endblock %}
 
 </body>

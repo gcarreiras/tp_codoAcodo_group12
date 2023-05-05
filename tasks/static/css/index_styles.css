@@ -54,7 +54,7 @@ li {
 }
 
 h1{
-    font-size: 10vh;
+    font-size: 20vh;
 }
 
 #logo{
@@ -82,8 +82,15 @@ h1{
     margin-top: 5vw;
 }
 
+#accesorios{
+    height: 3vw;
+    width: 15vw;
+    background-color: black;
+}
+
 .login{
     font-size: large;
+    cursor: pointer;
 }
 
 .section{
@@ -91,6 +98,29 @@ h1{
     background-color: #E6E6E6;
     height: 100vh;
     width: 100vw;
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.socialicons{
+    display: flex;
+    gap: 30px;
+}
+
+.titulo_contacto{
+    text-align: center;
+}
+
+.form_buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 
 .container_logos{
@@ -128,54 +158,67 @@ h1{
 }
 
 #copyright{
+    margin-top: 40px;
     font-size: medium;
     text-align: center;
+    background-color: #E6E6E6;
 }
+
 .wrapper {
     min-height: calc(100% - 4rem);
   }
 
-footer{
-    /* bottom: 0; */
+/* footer{
+    bottom: 0;
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 16rem;
-    background-color: #E53114;
-}
+    background-color: #E6E6E6;
+} */
 
 
 .foot {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* define 4 columnas de igual tamaño */
     grid-template-rows: repeat(4, 1fr); /* define 4 filas de igual tamaño */
-    gap: 10px;
     height: 200px; /*altura del contenedor */
-    background-color: #e53114;
-    
-  }
+    background-color: #E6E6E6;
+}
   
   .item {
-    /* background-color: #ccc; */
-     /* border: 1px solid #000;  */
-    text-align: center;
+    background-color: #E6E6E6;
     font-size: 15px;
     padding: 20px;
-    border-radius: 50%;
-  }
+}
+
 .suscription{
     text-align: center;
-    font-size: 15px;
-    padding: 20px;
+    font-size: 12px;
+    padding: 10px;
     border-radius: 50%;
 }
-  #suscribirse{
-    display: block;
-  }
 
-  a {
+#suscribirse{
+    display: block;
+    font-size: small;
+    margin-top: 10px;
+}
+
+.cont{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+a {
     text-decoration: none;
-  }
+}
+
+a:visited{
+    color: inherit;
+}
 
 /* Responsive */
 
