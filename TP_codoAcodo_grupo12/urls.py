@@ -24,6 +24,6 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('accesories/', views.accesories, name='acc'),
     path('cars/', views.cars , name='car'),
-    path('contact/', views.contact, name='contact'),
+    # path('contact/', views.contact, name='contact'),
     path('login/', views.login),
 ]
