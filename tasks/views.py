@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
+from .models import User
 
 
 
@@ -50,11 +51,13 @@ def signup(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            # form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+            new_user = User(username=username, password=password)
+            new_user.save()
             user = authenticate(username=username, password=password)
-            login(request,user)
+            # login(request,user)
             messages.success(request, ("Registro exitoso!"))
             return redirect('index')
     else:
