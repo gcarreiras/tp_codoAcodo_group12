@@ -25,6 +25,12 @@ li {
     gap: 200px;
 }
 
+.nav_items{
+    display: inline;
+    font-size: 10px;
+    justify-content: center;
+    flex-direction: row;
+}
 
 .presentation {
     /*background-color: yellow;*/
@@ -95,6 +101,7 @@ h1{
 
 .section{
     display: flex;
+    flex-direction: column;
     background-color: #E6E6E6;
     height: 100vh;
     width: 100vw;
@@ -106,6 +113,18 @@ h1{
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+}
+
+.card_wrapper_chevrolet{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+.card_wrapper_ford{
+    display: none;
+    gap: 1em;
+    justify-content: center;
 }
 
 .socialicons{
@@ -137,7 +156,7 @@ h1{
     border-radius: 50%;
 }
 
-.marcas1, .marcas2, .marcas3, .marcas4{
+.marcas1, .marcas2, .marcas3{
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
@@ -155,6 +174,11 @@ h1{
 
 .marcas3{
     background-image: url("../img/volkswagen_logo.png");
+}
+
+#wrapper_ford, #wrapper_chevrolet {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
 }
 
 #copyright{

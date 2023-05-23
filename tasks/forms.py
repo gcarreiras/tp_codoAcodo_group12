@@ -5,7 +5,7 @@ import re
 
 #FORMULARIO LOGIN
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=65)
+    usuario = forms.CharField(max_length=65)
     password = forms.CharField(max_length=65, widget=forms.PasswordInput)
 
 #FORMULARIO CONTACTO

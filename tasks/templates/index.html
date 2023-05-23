@@ -3,14 +3,19 @@
 
 
 {% block content %}
+
     <div class="presentation">
         <div class="intro">
-            <p>Buscas el auto de tus sueños?...</p>
-            <h1 class="'display-1">El <span style="color:#E53114 ">mejor</span> precio para tu 0km</h1>
-            <p>Amplia selección de vehiculos, las mejores marcas del mercado. Desde deportivos hasta familiares, tenemos el vehículo perfecto para vos. No te pierdas la oportunidad de conducir el auto de tus sueños, ¡visítanos ahora!</p>
+            <p class="fs-4">Buscas el auto de tus sueños?...</p>
+            <h1 class="display-2 fw-bold">El <span style="color:#E53114 ">mejor</span> precio para tu 0km</h1>
+            <p class="fs-6">Amplia selección de vehiculos, las mejores marcas del mercado.</p>
             <div class="boton_container">
-                <span><button class="boton" id="conoce_mas">Conoce mas</button></span>
-                <span><button class="boton" id="accesorios">Accesorios Originales</button></span>
+                <!-- <span><button class="boton" id="conoce_mas">Conoce mas</button></span>
+                <span><button class="boton" id="accesorios">Accesorios Originales</button></span> -->
+                <form class="container-fluid justify-content-start">
+                    <button class="btn bg-danger text-white" type="button">Conoce mas</button>
+                    <button class="btn bg-black text-white me-2" type="button">Accesorios Originales</button>
+                </form>
             </div>
         </div>
         <div id="big_car">
@@ -22,11 +27,56 @@
     <a id="vehiculos"></a>
     <section class="section" id="section 2">
         <div class="container_logos">
-            <span class="marcas1"></span>
-            <span class="marcas2"></span>
-            <span class="marcas3"></span>
+            <!-- <a href="#" id="chevrolet" class="marcas1" data-target="card_wrapper_chevrolet"><span></span></a>
+            <a href="#" id="ford" class="marcas2" data-target="card_wrapper_ford"><span></span></a> -->
+            <span class="marcas1" id="marcas1"></span>
+            <span class="marcas2" id="marcas2"></span>
+            <span class="marcas3" id="marcas3"></span>
+        </div>
+    
+        <div class="card_wrapper_chevrolet" id="wrapper_chevrolet">
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/chevrolet_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/chevrolet_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/chevrolet_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card_wrapper_ford" id="wrapper_ford">
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/ford_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/ford_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="../static/img/ford_logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <a id="contacto"></a>
    
@@ -55,7 +105,10 @@
     </div>
 
 
-{% endblock %}
+    <script src="{% static '../static/js/scripts.js' %}"></script>
+
+    {% endblock %}
+
 
 </body>
 </html>
