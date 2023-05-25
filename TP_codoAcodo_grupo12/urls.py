@@ -22,7 +22,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     #path('createuser/', views.createUser),
     path('signup/', views.signup, name='signup'),
-    path('accesories/', views.accesories, name='acc'),
+    path('accesories/', views.accesories, name='accesories'),
     path('cars/', views.cars , name='car'),
     # path('contact/', views.contact, name='contact'),
     path('login/', views.login),
