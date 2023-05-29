@@ -1,0 +1,108 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container border-1 border-primary">
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="border-right pb-3">
+                <h6>Opciones de búsqueda</h6>
+                <form>
+                    <div class="mb-3">
+                        <label for="searchInput" class="form-label">Buscar:</label>
+                        <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Ingrese su búsqueda">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Buscar</button>
+                </form>
+                <p></p>
+                <h6>Busqueda por marca</h6>
+                <div class="">
+                    <label class="form-label">Marca:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="chevrolet" id="chevroletCheckbox">
+                        <label class="form-check-label" for="chevroletCheckbox">
+                            Chevrolet
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ford" id="fordCheckbox">
+                        <label class="form-check-label" for="fordCheckbox">
+                            Ford
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="volkswagen" id="volkswagenCheckbox">
+                        <label class="form-check-label" for="volkswagenCheckbox">
+                            Volkswagen
+                        </label>
+                    </div>
+                </div>
+                
+            </aside>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <h1>Accesorios Originales</h1>
+                <div class="row">
+                    {% for accesorio in accessory %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">{{ accesorio.name }}</div>
+                            <div class="card-body">
+                                <p><strong>Color:</strong> {{ accesorio.color }}</p>
+                                <p><strong>Marca:</strong> {{ accesorio.brand }}</p>
+                                <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
+                                <p><strong>Precio:</strong> ${{ accesorio.price }}</p>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bsc-shopping-cart"></i>
+                                </button>
+                                  
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="w-100 h-50 bg-primary">
+    <h1>Listado</h1>
+    <div class="row">
+        {% for accesorio in accesory %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">{{ accesorio.name }}</div>
+                <div class="card-body">
+                    <p><strong>Color:</strong> {{ accesorio.color }}</p>
+                    <p><strong>Marca:</strong> {{ accesorio.brand }}</p>
+                    <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
+                    <p><strong>Precio:</strong> {{ accesorio.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> -->
+
+<!-- <div class="w-100 h-50 bg-primary">
+<h1>
+    Listado
+</h1>
+<ul>
+{% for accesorio in accesory %}
+
+    <li> {{accesorio.name}} </li>
+    <li> {{accesorio.color}} </li>
+    <li> {{accesorio.brand}} </li>
+    <li> {{accesorio.description}} </li>
+    <li> {{accesorio.price}} </li>
+
+{% endfor %}
+</ul>
+</div> -->
+
+{% endblock %}

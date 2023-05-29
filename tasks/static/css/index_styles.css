@@ -244,6 +244,17 @@ a:visited{
     color: inherit;
 }
 
+aside.border-right {
+    border-width: 0px;
+    border-right: 1px;
+    border-color: #f2f2f2;
+    border-style: solid;
+    margin-right: 20px;
+  }
+
+.bsc-shopping-cart{
+    color: white;
+}
 /* Responsive */
 
 @media only screen and (max-width: 800px){
