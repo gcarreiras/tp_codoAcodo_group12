@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
-from .models import User
+from .models import User, Accessory
 
 
 
@@ -70,8 +70,8 @@ def signup(request):
 #    return render(request, 'signup.html')
 
 def accesories(request):
-    #return render(request, acc)
-    return render(request, '.accesories/accesories.html')
+    accessory = Accessory.objects.all()
+    return render(request, 'accesories.html', {'accessory': accessory})
 
 def cars(request):
     return render(request, 'cars.html')
