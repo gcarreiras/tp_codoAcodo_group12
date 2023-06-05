@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <div class="container border-1 border-primary">
     <div class="row">
         <div class="col-md-3">
@@ -69,40 +70,69 @@
 </div>
 
 
-<!-- <div class="w-100 h-50 bg-primary">
-    <h1>Listado</h1>
-    <div class="row">
-        {% for accesorio in accesory %}
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">{{ accesorio.name }}</div>
-                <div class="card-body">
-                    <p><strong>Color:</strong> {{ accesorio.color }}</p>
-                    <p><strong>Marca:</strong> {{ accesorio.brand }}</p>
-                    <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
-                    <p><strong>Precio:</strong> {{ accesorio.price }}</p>
-                </div>
-            </div>
+
+<!-- ********************************** MODAL PARA INGRESAR ACCESORIOS *************************************  -->
+
+
+<div class="modal fade" id="modalAccesory" tabindex="-1" aria-labelledby="modalAccesoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalAccesoryLabel">Ingresar Accesorio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        {% endfor %}
+        <div class="modal-body">
+          <form method="POST" action="{% url 'add_accessory' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="color" class="form-label">Color</label>
+              <input type="text" class="form-control" id="color" name="color" required>
+            </div>
+            <div class="mb-3">
+              <label for="brand" class="form-label">Marca</label>
+              <input type="text" class="form-control" id="brand" name="brand" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Descripción</label>
+              <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Imagen</label>
+              <input type="file" class="form-control" id="image" name="image" required>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Precio</label>
+              <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
     </div>
-</div> -->
+  </div>
 
-<!-- <div class="w-100 h-50 bg-primary">
-<h1>
-    Listado
-</h1>
-<ul>
-{% for accesorio in accesory %}
+<!-- ********************************* FIN MODAL INGRESO DE DATOS **************************************** -->
 
-    <li> {{accesorio.name}} </li>
-    <li> {{accesorio.color}} </li>
-    <li> {{accesorio.brand}} </li>
-    <li> {{accesorio.description}} </li>
-    <li> {{accesorio.price}} </li>
 
-{% endfor %}
-</ul>
-</div> -->
+
+<script>
+console.log("Mensaje de prueba script");
+$(document).ready(function() {
+    // Capturar el evento de envío del formulario
+    $('#modalAccesory').submit(function(event) {
+        // Obtener la URL de la vista add_accessory
+        
+        console.log("Mensaje de prueba 5  ");
+    var url = 'add_accessory/';
+
+    // Asignar la URL al atributo action del formulario
+    $(this).attr('action', url);
+  });
+});
+</script>
 
 {% endblock %}
