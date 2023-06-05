@@ -79,5 +79,5 @@ def cars(request):
 def contact(request):
     return render(request, '/index#contact.html')
 
-def login(request):
-    return render(request, 'login.html')
+#def login(request):
+#    return render(request, 'login.html')
