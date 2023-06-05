@@ -19,6 +19,5 @@ class Accessory(models.Model):
      price = models.FloatField(verbose_name='Accesory price')
      user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
      
-
-
-     
+     def __str__(self):
+          return (f"Nombre: {self.name}")

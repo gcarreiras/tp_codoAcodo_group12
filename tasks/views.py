@@ -5,7 +5,7 @@ from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
 from .models import User, Accessory
-
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -47,24 +47,46 @@ def logout_user(request):
     messages.success(request, ("Deslogueado"))
     return redirect('index')
 
+
+
 def signup(request):
+    login_form = LoginForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            # form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            new_user = User(username=username, password=password)
+            # Crear un nuevo usuario
+            new_user = User.objects.create_user(username=username, password=password)
+            new_user.email = form.cleaned_data['email']
+            #new_user.first_name = form.cleaned_data['first_name']
+            #new_user.last_name = form.cleaned_data['last_name']
             new_user.save()
-            user = authenticate(username=username, password=password)
-            # login(request,user)
-            messages.success(request, ("Registro exitoso!"))
+            
+            messages.success(request, "Registro exitoso!")
             return redirect('index')
     else:
         form = RegisterForm()
-    return render(request, 'signup.html',{
-        'form':form
-    })
+    return render(request, 'signup.html', {'form': form, 'login_form':login_form})
+
+# def signup(request):
+#     if request.method == "POST":
+#         form = RegisterForm(request.POST)
+#         if form.is_valid():
+#             # form.save()
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password1']
+#             new_user = User(username=username, password=password)
+#             new_user.save()
+#             user = authenticate(username=username, password=password)
+#             # login(request,user)
+#             messages.success(request, ("Registro exitoso!"))
+#             return redirect('index')
+#     else:
+#         form = RegisterForm()
+#     return render(request, 'signup.html',{
+#         'form':form
+#     })
 
 #def signup(request):
 #    return render(request, 'signup.html')
