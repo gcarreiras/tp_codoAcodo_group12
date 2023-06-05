@@ -48,6 +48,11 @@
             </form>
         </div>
     </div>
+    {% if is_accesories_page %}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
+            Ingresar Accesorio
+        </button>
+    {% endif %}
 </nav>
   
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -61,12 +66,10 @@
                 {% csrf_token %}
                 {{ login_form.as_p }}
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Iniciar Sesion</button>
-            </div>
         </div>
     </div>
 </div>
+
+
 
 </header>
