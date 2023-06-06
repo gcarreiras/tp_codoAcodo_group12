@@ -10,14 +10,20 @@ class User(models.Model):
      username = models.CharField(max_length=50, verbose_name='Username')
      password = models.CharField(max_length=50, verbose_name='Password')
 
+##### marca a productos y productos a marcas 
+
+class Brand(models.Model):
+    brand = models.CharField(max_length=50, verbose_name='Accessory brand')
+    accessories = models.ManyToManyField('Accessory', verbose_name='Accessories', related_name='brand_set')
+
 class Accessory(models.Model):
-     name = models.CharField(max_length=50, verbose_name='Accesory name')
-     color = models.CharField(max_length=50, verbose_name='Accesory color')
-     brand = models.CharField(max_length=50, verbose_name='Accesory brand')
-     description = models.CharField(max_length=100, verbose_name='Accesory description')
-     image = models.FileField(verbose_name='Accesory image')
-     price = models.FloatField(verbose_name='Accesory price')
-     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
-     
-     def __str__(self):
+    name = models.CharField(max_length=50, verbose_name='Accessory name')
+    color = models.CharField(max_length=50, verbose_name='Accessory color')
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='Brand', related_name='accessory_set')
+    description = models.CharField(max_length=100, verbose_name='Accessory description')
+    image = models.FileField(verbose_name='Accessory image', null=True)
+    price = models.FloatField(verbose_name='Accessory price')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
+
+def __str__(self):
           return (f"Nombre: {self.name}")
