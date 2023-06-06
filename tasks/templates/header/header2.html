@@ -66,6 +66,10 @@
                 {% csrf_token %}
                 {{ login_form.as_p }}
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Iniciar Sesion</button>
+            </div>
         </div>
     </div>
 </div>

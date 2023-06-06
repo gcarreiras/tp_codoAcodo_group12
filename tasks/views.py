@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
-from .models import User, Accessory
+from .models import User, Accessory , Brand
 from django.contrib.auth.models import User
 
 
@@ -48,30 +48,6 @@ def logout_user(request):
     return redirect('index')
 
 
-
-
-# def signup(request):
-#     if request.method == "POST":
-#         form = RegisterForm(request.POST)
-#         if form.is_valid():
-#             # form.save()
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password1']
-#             new_user = User(username=username, password=password)
-#             new_user.save()
-#             user = authenticate(username=username, password=password)
-#             # login(request,user)
-#             messages.success(request, ("Registro exitoso!"))
-#             return redirect('index')
-#     else:
-#         form = RegisterForm()
-#     return render(request, 'signup.html',{
-#         'form':form
-#     })
-
-#def signup(request):
-#    return render(request, 'signup.html')
-
 def accesories(request):
 
     accessory = Accessory.objects.all()
@@ -85,8 +61,7 @@ def cars(request):
 def contact(request):
     return render(request, '/index#contact.html')
 
-#def login(request):
-#    return render(request, 'login.html')
+
 
 def signup(request):
     login_form = LoginForm()
@@ -112,22 +87,25 @@ def signup(request):
 #///////////// add accesory from modal //////////////////////////////////
 
 def add_accessory(request):
-    print ('pre-post')
+   
+    brand_name = request.POST.get('brand')
+    brand = get_object_or_404(Brand, brand=brand_name)
+
     if request.method == 'POST':
-        print ('post')
         name = request.POST.get('name')
         color = request.POST.get('color')
-        brand = request.POST.get('brand')
+       #brand = request.POST.get('brand')
         description = request.POST.get('description')
         image = request.FILES.get('image')
         price = request.POST.get('price')
-        username = 'gaston'
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            # Manejo de error si el usuario no existe
-            # Por ejemplo, puedes redirigir a una página de error o mostrar un mensaje al usuario.
-            return HttpResponse('El usuario no existe')
+        
+        #username = 'gaston'
+        # try:
+        #     user = User.objects.get(username=username)
+        # except User.DoesNotExist:
+        #     # Manejo de error si el usuario no existe
+        #     # Por ejemplo, puedes redirigir a una página de error o mostrar un mensaje al usuario.
+        #     return HttpResponse('El usuario no existe')
 
 
         # # Verificar si el usuario está autenticado, esto es a modo de prueba ... despues solo usuario con permisos
@@ -144,9 +122,9 @@ def add_accessory(request):
             description=description,
             image=image,
             price=price,
-            user=user
+            #user=user
         )
-        print('accessory', accessory)
+        
         accessory.save()
     return redirect('accesories')
 
