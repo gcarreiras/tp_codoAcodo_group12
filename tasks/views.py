@@ -37,14 +37,12 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(request, username=username,password=password)
         if user is not None:
-            login(request,user)
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
-            else:
-                return redirect('index')
+            print('usuario correcto')
+            return redirect('index')
         else:
+            print('usuario incorrecto')
             messages.error(request, "Error de inicio de sesión")
-    return redirect('login')
+        return redirect('index')
 
 
 def logout_user(request):
