@@ -31,16 +31,21 @@ def index(request):
     return render(request, 'index.html',{'contact_form': contact_form, 'login_form':login_form , 'is_accesories_page': is_accesories_page})
 
 def login_user(request):
+    #print ('post' , request.POST)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('index')
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('index')
         else:
-            messages.success(request,("Error de login"))
-            return redirect('login')
+            messages.error(request, "Error de inicio de sesión")
+    return redirect('login')
+
 
 def logout_user(request):
     logout(request)
