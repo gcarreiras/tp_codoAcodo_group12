@@ -38,7 +38,7 @@ def login_user(request):
         user = authenticate(request, username=username,password=password)
         if user is not None:
             print('usuario correcto')
-            return redirect('index')
+            return render(request, 'index.html',{'user': user})
         else:
             print('usuario incorrecto')
             messages.error(request, "Error de inicio de sesión")
@@ -46,6 +46,7 @@ def login_user(request):
 
 
 def logout_user(request):
+    print('estoy en el logout')
     logout(request)
     messages.success(request, ("Deslogueado"))
     return redirect('index')
