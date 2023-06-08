@@ -43,8 +43,12 @@
                 </li>
             </ul>
             <form class="container-fluid justify-content-start">
-                <button class="btn bg-black text-white me-2" data-bs-toggle="modal" data-bs-target="#loginModal"type="button">Iniciar Sesion</button>
-                <button class="btn bg-danger text-white" type="button" ><a href= "{% url 'signup' %}">Registrate</a></button>
+                {% if user.is_authenticated %}
+                    <a href="" class="btn btn-danger">Cerrar sesión</a>
+                {% else %}
+                    <button class="btn bg-black text-white me-2" data-bs-toggle="modal" data-bs-target="#loginModal"type="button">Iniciar Sesion</button>
+                    <button class="btn bg-danger text-white" type="button" ><a href= "{% url 'signup' %}">Registrate</a></button>    
+                {% endif %}
             </form>
         </div>
     </div>
