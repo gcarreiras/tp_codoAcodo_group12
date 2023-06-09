@@ -16,6 +16,9 @@ class Brand(models.Model):
     brand = models.CharField(max_length=50, verbose_name='Accessory brand')
     accessories = models.ManyToManyField('Accessory', verbose_name='Accessories', related_name='brand_set')
 
+    def __str__(self):
+          return (f"{self.brand}")
+
 class Accessory(models.Model):
     name = models.CharField(max_length=50, verbose_name='Accessory name')
     color = models.CharField(max_length=50, verbose_name='Accessory color')
@@ -25,5 +28,5 @@ class Accessory(models.Model):
     price = models.FloatField(verbose_name='Accessory price')
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
 
-def __str__(self):
+    def __str__(self):
           return (f"Nombre: {self.name}")
