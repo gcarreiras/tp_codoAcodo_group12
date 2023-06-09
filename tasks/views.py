@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import User, Accessory , Brand
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -32,13 +33,16 @@ def index(request):
 
 def login_user(request):
     #print ('post' , request.POST)
+    contact_form = ContactForm()
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username,password=password)
         if user is not None:
             print('usuario correcto')
-            return render(request, 'index.html',{'user': user})
+            login(request, user)
+            return render(request, 'index.html',  {'contact_form': contact_form})
+            # return render(request, 'index.html',{'user': user, 'contact_form': contact_form})
         else:
             print('usuario incorrecto')
             messages.error(request, "Error de inicio de sesión")
@@ -52,12 +56,14 @@ def logout_user(request):
     return redirect('index')
 
 
-def accesories(request):
 
+def accesories(request):
+    brands = Brand.objects.all()
+    login_form= LoginForm()
     accessory = Accessory.objects.all()
     is_accesories_page = True
     print('is_accesories_page', is_accesories_page) 
-    return render(request, 'accesories.html', {'accessory': accessory , 'is_accesories_page': is_accesories_page})
+    return render(request, 'accesories.html', {'accessory': accessory , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands})
 
 def cars(request):
     return render(request, 'cars.html')

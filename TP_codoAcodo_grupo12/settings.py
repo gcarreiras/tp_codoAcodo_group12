@@ -79,7 +79,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'PIG',
          'USER': 'postgres',
-         'PASSWORD': '123456789',
+         'PASSWORD': '1234',
          'HOST': 'localhost',
          'PORT': '5432',
     }
@@ -128,3 +128,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db' #agregado
+SESSION_COOKIE_SECURE = True #agregado
