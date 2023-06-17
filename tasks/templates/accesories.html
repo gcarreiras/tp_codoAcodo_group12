@@ -4,18 +4,26 @@
 {% block content %}
 
 
+
 <div class="container border-1 border-primary">
     <div class="row">
         <div class="col-md-3">
             <aside class="border-right pb-3">
                 <h6>Opciones de búsqueda</h6>
-                <form>
+                <form action="{% url 'buscar_accesorios' %}" method="get">
+                  <div class="mb-3">
+                      <label for="searchInput" class="form-label">Búsqueda:</label>
+                      <input type="text" class="form-control form-control-sm" id="searchInput" name="nombre" placeholder="Ingrese nombre accesorio">
+                  </div>
+                  <button type="submit" class="btn btn-danger">Buscar</button>
+              </form>
+                <!-- <form>
                     <div class="mb-3">
                         <label for="searchInput" class="form-label">Busqueda:</label>
-                        <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Ingrese su búsqueda">
+                        <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Ingrese nombre accesorio">
                     </div>
                     <button type="submit" class="btn btn-danger">Buscar</button>
-                </form>
+                </form> -->
                 <p></p>
                 <h6>Busqueda por marca</h6>
                 <div class="">
@@ -44,7 +52,35 @@
         </div>
         <div class="col-md-9">
             <div>
-                <h1>Accesorios Originales</h1>
+              <h1>Accesorios Originales</h1>
+              <div class="row">
+                  {% for accesorio in accessory %}
+                  <div class="col-md-4">
+                      <div class="card" style="width: 300px; height: auto;">
+                          <div class="card-header">{{ accesorio.name }}</div>
+                            <div class="card-body">
+                              <p><strong>Color:</strong> {{ accesorio.color }}</p>
+                              <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
+                              <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
+                              <p><strong>Categoria:</strong> {% for category in accesorio.categories.all %}{{ category.name }} / {% endfor %}</p>
+                              <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
+                            </div>
+                            <div class="card-footer">
+                              {% if user.is_staff %}
+                                <form method="POST" action="{% url 'eliminar_accesorio' %}">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
+                                  <button type="submit" class="btn btn-primary">
+                                  <ion-icon name="trash-outline"></ion-icon>
+                                  </button>
+                                </form>
+                              {% endif %}
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  {%  endfor %}
+                <!-- <h1>Accesorios Originales</h1>
                 <div class="row">
                     {% for accesorio in accessory %}
                     <div class="col-md-4">
@@ -55,15 +91,19 @@
                                 <p><strong>Marca:</strong> {{ accesorio.brand }}</p>
                                 <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
                                 <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
-                                {% if user.is_superuser %}
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal{{ accesorio.id }}">
+                                {% if user.is_staff %}
+                                  <form method="POST" action="{% url 'eliminar_accesorio' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
+                                    <button type="submit" class="btn btn-primary">
                                     <ion-icon name="trash-outline"></ion-icon>
-                                  </button>
+                                    </button>
+                                  </form>
                                 {% endif %}
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
+                    </div> -->
+                    <!-- {% endfor %} -->
                 </div>
             </div>
         </div>
@@ -73,11 +113,13 @@
 
 
 <!-- ********************************** MODAL PARA INGRESAR ACCESORIOS *************************************  -->
-{% if user.is_superuser %}
+{% if user.is_staff %}
 {% if is_accesories_page %}
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
+        <div class="ms-5">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
             Ingresar Accesorio
-        </button>
+          </button>
+        </div>
         {% endif %}
 <div class="modal fade" id="modalAccesory" tabindex="-1" aria-labelledby="modalAccesoryLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -102,7 +144,7 @@
               <!-- <input type="text" class="form-control" id="brand" name="brand" required> -->
               <select class="form-control" id="brand" name="brand" required>
                 <option value="" selected disabled>Selecciona una marca</option>
-                  {% for brand in brands %}
+                  {% for brand in brand %}
                     <option value="{{ brand.brand }}">{{ brand.brand }}</option>
                   {% endfor %}
               </select>

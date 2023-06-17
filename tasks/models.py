@@ -13,20 +13,26 @@ class User(models.Model):
 ##### marca a productos y productos a marcas 
 
 class Brand(models.Model):
-    brand = models.CharField(max_length=50, verbose_name='Accessory brand')
-    accessories = models.ManyToManyField('Accessory', verbose_name='Accessories', related_name='brand_set')
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-          return (f"{self.brand}")
+          return self.name
+    
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+          return self.name
 
 class Accessory(models.Model):
     name = models.CharField(max_length=50, verbose_name='Accessory name')
     color = models.CharField(max_length=50, verbose_name='Accessory color')
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='Brand', related_name='accessory_set')
+    brands = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='Brand')
     description = models.CharField(max_length=100, verbose_name='Accessory description')
     image = models.FileField(verbose_name='Accessory image', null=True)
     price = models.FloatField(verbose_name='Accessory price')
+    categories = models.ManyToManyField(Category, verbose_name='Categories')
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
 
     def __str__(self):
-          return (f"Nombre: {self.name}")
+          return self.name
