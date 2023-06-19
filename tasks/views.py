@@ -7,6 +7,7 @@ from django.urls import reverse
 from .models import User, Accessory , Brand
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 
 def index(request):
@@ -32,7 +33,6 @@ def index(request):
     return render(request, 'index.html',{'contact_form': contact_form, 'login_form':login_form , 'is_accesories_page': is_accesories_page})
 
 def login_user(request):
-    #print ('post' , request.POST)
     contact_form = ContactForm()
     if request.method == "POST":
         username = request.POST['username']
@@ -56,13 +56,13 @@ def logout_user(request):
     return redirect('index')
 
 
-
+@login_required
 def accesories(request):
     brands = Brand.objects.all()
     login_form= LoginForm()
     accessory = Accessory.objects.all()
     is_accesories_page = True
-    print('is_accesories_page', is_accesories_page) 
+
     return render(request, 'accesories.html', {'accessory': accessory , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands})
 
 def cars(request):
@@ -104,7 +104,7 @@ def add_accessory(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         color = request.POST.get('color')
-       #brand = request.POST.get('brand')
+        brand = request.POST.get('brand')
         description = request.POST.get('description')
         image = request.FILES.get('image')
         price = request.POST.get('price')
@@ -132,8 +132,7 @@ def add_accessory(request):
             description=description,
             image=image,
             price=price,
-            #user=user
-        )
+            )
         
         accessory.save()
     return redirect('accesories')
@@ -142,3 +141,17 @@ def add_accessory(request):
     #return render(request, 'accesories.html')
 
 # //////////////// end add accesory //////////////////////////////////
+
+@require_POST
+def eliminar_accesorio(request):
+    accesorio_id = request.POST.get('accesorio_id')
+    eliminar = get_object_or_404(Accessory, id=accesorio_id)
+    eliminar.delete()
+    return redirect('accesories')
+
+def buscar_accesorios(request):
+    nombre = request.GET.get('nombre')
+
+    accesorios = Accessory.objects.filter(name__icontains=nombre)
+    
+    return render(request, 'accesories.html', {'accessory': accesorios})

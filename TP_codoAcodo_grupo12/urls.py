@@ -27,6 +27,8 @@ urlpatterns = [
     #path('createuser/', views.createUser),
     path('signup/', views.signup, name='signup'),
     path('accesories/', views.accesories, name='accesories'),
+    path('eliminar-accesorio/', views.eliminar_accesorio, name='eliminar_accesorio'),
+    path('buscar-accesorios/', views.buscar_accesorios, name='buscar_accesorios'),
     path('cars/', views.cars , name='car'),
     # path('contact/', views.contact, name='contact'),
     path('login/', views.login_user , name='login'),
