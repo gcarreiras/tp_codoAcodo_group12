@@ -144,8 +144,8 @@
               <!-- <input type="text" class="form-control" id="brand" name="brand" required> -->
               <select class="form-control" id="brand" name="brand" required>
                 <option value="" selected disabled>Selecciona una marca</option>
-                  {% for brand in brand %}
-                    <option value="{{ brand.brand }}">{{ brand.brand }}</option>
+                  {% for brand in brands %}
+                    <option value="{{ brand.name }}">{{ brand.name }}</option>
                   {% endfor %}
               </select>
             </div>
