@@ -98,41 +98,35 @@ def signup(request):
 
 def add_accessory(request):
    
-    brand_name = request.POST.get('brand')
-    brand = get_object_or_404(Brand, brand=brand_name)
+    # brand_name = request.POST.get('brand')
+    # brand = get_object_or_404(Brand, brand=brand_name)
 
+    # if request.method == 'POST':
+    #     name = request.POST.get('name')
+    #     color = request.POST.get('color')
+    #     brand = request.POST.get('brand')
+    #     description = request.POST.get('description')
+    #     image = request.FILES.get('image')
+    #     price = request.POST.get('price')
     if request.method == 'POST':
+        brand_name = request.POST.get('brand')
+        print('BRAND NAME:', brand_name)
         name = request.POST.get('name')
         color = request.POST.get('color')
-        brand = request.POST.get('brand')
+        brand_name = request.POST.get('brand')
+        brand = get_object_or_404(Brand, name=brand_name)
         description = request.POST.get('description')
         image = request.FILES.get('image')
         price = request.POST.get('price')
         
-        #username = 'gaston'
-        # try:
-        #     user = User.objects.get(username=username)
-        # except User.DoesNotExist:
-        #     # Manejo de error si el usuario no existe
-        #     # Por ejemplo, puedes redirigir a una página de error o mostrar un mensaje al usuario.
-        #     return HttpResponse('El usuario no existe')
-
-
-        # # Verificar si el usuario está autenticado, esto es a modo de prueba ... despues solo usuario con permisos
-        # if request.user.is_authenticated:
-        #     user = request.user
-        # else:
-            
-        #     user = User.objects.get(username='default_user')
-
         accessory = Accessory(
             name=name,
             color=color,
-            brand=brand,
+            brands=brand,
             description=description,
             image=image,
             price=price,
-            )
+        )
         
         accessory.save()
     return redirect('accesories')
