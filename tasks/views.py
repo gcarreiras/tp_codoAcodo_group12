@@ -150,13 +150,13 @@ def buscar_accesorios(request):
 
 
 def buscar_acc_brand_cat(request):
-    brand_name = request.GET.get('marca')
+    brand_names = request.GET.getlist('marca')  
     category_names = request.GET.getlist('categories')
     categories = Category.objects.all()
 
-    if brand_name:
-        brand = get_object_or_404(Brand, name=brand_name)
-        accesorios = Accessory.objects.filter(brands=brand)
+    if brand_names:
+        brands = Brand.objects.filter(name__in=brand_names)  
+        accesorios = Accessory.objects.filter(brands__in=brands)
 
         if category_names:
             categories = categories.filter(name__in=category_names)
