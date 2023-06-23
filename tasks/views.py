@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 , get_list_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
@@ -102,9 +102,8 @@ def add_accessory(request):
    
 
     if request.method == 'POST':
-       
-        category = request.POST.getlist('categories')
-        print('Category in the post ' , category)
+        category_names = request.POST.getlist('categories')
+        categories = get_list_or_404(Category, name__in=category_names)
         brand_name = request.POST.get('brand')
         name = request.POST.get('name')
         color = request.POST.get('color')
@@ -124,6 +123,8 @@ def add_accessory(request):
         )
         
         accessory.save()
+        accessory.categories.set(categories)
+        
     return redirect('accesories')
 
 
