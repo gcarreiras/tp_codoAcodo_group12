@@ -29,7 +29,7 @@ def index(request):
    
     else:
         contact_form = ContactForm()
-    print('is_accesories_page', is_accesories_page)
+
     return render(request, 'index.html',{'contact_form': contact_form, 'login_form':login_form , 'is_accesories_page': is_accesories_page})
 
 def login_user(request):
@@ -50,7 +50,6 @@ def login_user(request):
 
 
 def logout_user(request):
-    print('estoy en el logout')
     logout(request)
     messages.success(request, ("Deslogueado"))
     return redirect('index')
@@ -60,7 +59,6 @@ def logout_user(request):
 def accesories(request):
     brands = Brand.objects.all()
     categories = Category.objects.all()
-    print('CATEGORIES:' , categories )
     login_form= LoginForm()
     accessory = Accessory.objects.all()
     is_accesories_page = True
@@ -79,21 +77,21 @@ def signup(request):
     login_form = LoginForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             # Crear un nuevo usuario
             new_user = User.objects.create_user(username=username, password=password)
             new_user.email = form.cleaned_data['email']
-            #new_user.first_name = form.cleaned_data['first_name']
-            #new_user.last_name = form.cleaned_data['last_name']
-            new_user.save()
-            
+            new_user.save()          
             messages.success(request, "Registro exitoso!")
             return redirect('index')
+    
     else:
         form = RegisterForm()
     return render(request, 'signup.html', {'form': form, 'login_form':login_form})
+
 
 
 #///////////// add accesory from modal //////////////////////////////////
@@ -124,13 +122,12 @@ def add_accessory(request):
         
         accessory.save()
         accessory.categories.set(categories)
-        
+
     return redirect('accesories')
 
 
-    #return render(request, 'accesories.html')
-
 # //////////////// end add accesory //////////////////////////////////
+
 
 @require_POST
 def eliminar_accesorio(request):
