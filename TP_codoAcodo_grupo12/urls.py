@@ -29,6 +29,7 @@ urlpatterns = [
     path('accesories/', views.accesories, name='accesories'),
     path('eliminar-accesorio/', views.eliminar_accesorio, name='eliminar_accesorio'),
     path('buscar-accesorios/', views.buscar_accesorios, name='buscar_accesorios'),
+    path('buscar_acc_brand_cat/', views.buscar_acc_brand_cat, name='buscar_acc_brand_cat'),
     path('cars/', views.cars , name='car'),
     # path('contact/', views.contact, name='contact'),
     path('login/', views.login_user , name='login'),

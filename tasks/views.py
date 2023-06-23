@@ -4,10 +4,11 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
-from .models import User, Accessory , Brand , Category
+from .models import User, Accessory , Brand , Category 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db.models import Q
 
 
 def index(request):
@@ -143,5 +144,29 @@ def buscar_accesorios(request):
     nombre = request.GET.get('nombre')
 
     accesorios = Accessory.objects.filter(name__icontains=nombre)
+    categories = Category.objects.all()
     
-    return render(request, 'accesories.html', {'accessory': accesorios})
+    return render(request, 'accesories.html', {'accessory': accesorios, 'categories': categories})
+
+
+def buscar_acc_brand_cat(request):
+    brand_name = request.GET.get('marca')
+    category_names = request.GET.getlist('categories')
+    categories = Category.objects.all()
+
+    if brand_name:
+        brand = get_object_or_404(Brand, name=brand_name)
+        accesorios = Accessory.objects.filter(brands=brand)
+
+        if category_names:
+            categories = categories.filter(name__in=category_names)
+            accesorios = accesorios.filter(categories__in=categories)
+    else:
+        if category_names:
+            categories = categories.filter(name__in=category_names)
+            accesorios = Accessory.objects.filter(categories__in=categories)
+        else:
+            accesorios = Accessory.objects.all()
+            categories = Category.objects.all()
+
+    return render(request, 'accesories.html', {'accessory': accesorios, 'categories': categories})
