@@ -18,29 +18,39 @@
                     <button type="submit" class="btn btn-danger">Buscar</button>
                   </form>
                   <p></p>
-                  <form action="">
+                  <form action="{% url 'buscar_acc_brand_cat' %}" method="get">
                     <h6>Busqueda por marca</h6>
                       <div class="">
                         <label class="form-label">Marca:</label>
                           <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="chevrolet" id="chevroletCheckbox">
+                              <input class="form-check-input" type="checkbox" value="Chevrolet" id="chevroletCheckbox" name="marca">
                               <label class="form-check-label" for="chevroletCheckbox">
                                 Chevrolet
                               </label>
                           </div>
                           <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="ford" id="fordCheckbox">
+                              <input class="form-check-input" type="checkbox" value="Ford" id="fordCheckbox" name="marca">
                               <label class="form-check-label" for="fordCheckbox">
                                 Ford
                               </label>
                           </div>
                           <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="volkswagen" id="volkswagenCheckbox">
+                              <input class="form-check-input" type="checkbox" value="Volkswagen" id="volkswagenCheckbox" name="marca">
                               <label class="form-check-label" for="volkswagenCheckbox">
                                 Volkswagen
                               </label>
                           </div>
-                      </div>   
+                          <h6>Busqueda por Categoria</h6>
+                          {% for c in categories  %}
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{c.name}}" id="{{c.name}}" name="categories">
+                            <label class="form-check-label" for="{{c.name}}Checkbox">
+                              {{c.name}}
+                            </label>
+                          </div>
+                          {% endfor %}
+                      </div>
+                      <button type="submit" class="btn btn-danger">Buscar</button>   
                   </form>  
             </aside>
         
