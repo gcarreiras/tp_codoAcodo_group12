@@ -32,7 +32,6 @@ class Accessory(models.Model):
     image = models.FileField(verbose_name='Accessory image', null=True)
     price = models.FloatField(verbose_name='Accessory price')
     categories = models.ManyToManyField(Category, verbose_name='Categories')
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None, related_name='accessories')
-
+   
     def __str__(self):
           return self.name

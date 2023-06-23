@@ -148,6 +148,17 @@
                     <option value="{{ brand.name }}">{{ brand.name }}</option>
                   {% endfor %}
               </select>
+              <!-- <option value="" selected disabled>Selecciona una Categoria</option>
+                  {% for c in categories %}
+                  <input type="checkbox" name="categories" value="{{c.name}}"> {{c.name}}<br>
+                  {% endfor %} -->
+              <fieldset>
+                  <legend>Categorías</legend>
+                    {% for c in categories %}
+                      <input type="checkbox" name="categories" value="{{ c.name }}">
+                      <label>{{ c.name }}</label><br>
+                    {% endfor %}
+              </fieldset>
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Descripción</label>
