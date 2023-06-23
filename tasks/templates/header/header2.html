@@ -46,7 +46,6 @@
                 <form class="container-fluid justify-content-start">
                     {% if user.is_authenticated %}
                     <span class="btn {% if user.is_superuser %}text-danger{% endif %}">Bienvenido {{ user.username }}</span><a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>    
-                    <!-- <span class="btn">Bienvenido {{user.username}}</span><a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a> -->
                     {% else %}
                         <button class="btn bg-black text-white me-2" data-bs-toggle="modal" data-bs-target="#loginModal"type="button">Iniciar Sesion</button>
                         <button class="btn bg-danger text-white" type="button" ><a href= "{% url 'signup' %}">Registrate</a></button>    
@@ -54,11 +53,6 @@
                     </form>
                 </div>
         </div>
-        <!-- {% if is_accesories_page %}
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
-            Ingresar Accesorio
-        </button>
-        {% endif %} -->
     </nav>
     
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">

@@ -28,7 +28,6 @@ li {
 }
 
 .presentation {
-    /*background-color: yellow;*/
     display: flex;
     height: 100vh;
     width: 95vw;
@@ -130,8 +129,7 @@ footer{
   }
   
   .item {
-    /* background-color: #ccc; */
-     /* border: 1px solid #000;  */
+    
     text-align: center;
     font-size: 15px;
     padding: 20px;

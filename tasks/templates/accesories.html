@@ -1,6 +1,10 @@
 {% extends './base.html' %}
 {% load static %}
 
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/accesories.css' %}">
+{% endblock %}
+
 {% block content %}
 
 
@@ -57,110 +61,105 @@
             <!-- ********************************** MODAL PARA INGRESAR ACCESORIOS *************************************  -->
 {% if user.is_staff %}
 {% if is_accesories_page %}
-        <div class="ms-5">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
-            Ingresar Accesorio
-          </button>
-        </div>
-        {% endif %}
-<div class="modal fade" id="modalAccesory" tabindex="-1" aria-labelledby="modalAccesoryLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalAccesoryLabel">Ingresar Accesorio</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="{% url 'add_accessory' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="name" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="name" name="name" required>
+            <div class="ms-5">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAccesory">
+                Ingresar Accesorio
+              </button>
             </div>
-            <div class="mb-3">
-              <label for="color" class="form-label">Color</label>
-              <input type="text" class="form-control" id="color" name="color" required>
+            {% endif %}
+            <div class="modal fade" id="modalAccesory" tabindex="-1" aria-labelledby="modalAccesoryLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalAccesoryLabel">Ingresar Accesorio</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="POST" action="{% url 'add_accessory' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="color" class="form-label">Color</label>
+                          <input type="text" class="form-control" id="color" name="color" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="brand" class="form-label">Marca</label>
+                          <select class="form-control" id="brand" name="brand" required>
+                            <option value="" selected disabled>Selecciona una marca</option>
+                              {% for brand in brands %}
+                                <option value="{{ brand.name }}">{{ brand.name }}</option>
+                              {% endfor %}
+                          </select>
+                          <fieldset>
+                              <legend>Categorías</legend>
+                                {% for c in categories %}
+                                  <input type="checkbox" name="categories" value="{{ c.name }}">
+                                  <label>{{ c.name }}</label><br>
+                                {% endfor %}
+                          </fieldset>
+                        </div>
+                        <div class="mb-3">
+                          <label for="description" class="form-label">Descripción</label>
+                          <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="image" class="form-label">Imagen</label>
+                          <input type="file" class="form-control" id="image" name="image" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="price" class="form-label">Precio</label>
+                          <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="brand" class="form-label">Marca</label>
-              <select class="form-control" id="brand" name="brand" required>
-                <option value="" selected disabled>Selecciona una marca</option>
-                  {% for brand in brands %}
-                    <option value="{{ brand.name }}">{{ brand.name }}</option>
-                  {% endfor %}
-              </select>
-              <fieldset>
-                  <legend>Categorías</legend>
-                    {% for c in categories %}
-                      <input type="checkbox" name="categories" value="{{ c.name }}">
-                      <label>{{ c.name }}</label><br>
-                    {% endfor %}
-              </fieldset>
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Descripción</label>
-              <textarea class="form-control" id="description" name="description" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Imagen</label>
-              <input type="file" class="form-control" id="image" name="image" required>
-            </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Precio</label>
-              <input type="number" step="0.01" class="form-control" id="price" name="price" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <!-- ********************************* FIN MODAL INGRESO DE DATOS **************************************** -->
         
-        </div>
+</div>
         
         
-        
-        <div class="col-md-9">
-            <div>
-              <h1>Accesorios Originales</h1>
-              <div class="row">
-                  {% for accesorio in accessory %}
-                  <div class="col-md-4">
-                      <div class="card" style="width: 300px; height: auto;">
-                          <div class="card-header">{{ accesorio.name }}</div>
-                            <div class="card-body">
-                              <p><strong>Color:</strong> {{ accesorio.color }}</p>
-                              <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
-                              <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
-                              <p><strong>Categoria:</strong> {% for category in accesorio.categories.all %}{{ category.name }} / {% endfor %}</p>
-                              <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
-                            </div>
-                            <div class="card-footer">
-                              {% if user.is_staff %}
-                                <form method="POST" action="{% url 'eliminar_accesorio' %}">
-                                  {% csrf_token %}
-                                  <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
-                                  <button type="submit" class="btn btn-primary">
-                                  <ion-icon name="trash-outline"></ion-icon>
-                                  </button>
-                                </form>
-                              {% endif %}
-                            </div>
-                          </div>
-                      </div>
+<div class="col-md-9">
+  <div>
+      <h1>Accesorios Originales</h1>
+      <div class="row">
+          {% for accesorio in accessory %}
+          <div class="col-6 col-md-4">
+              <div class="accCard">
+                  <div class="card-header">{{ accesorio.name }}</div>
+                  <div class="card-body">
+                      <p><strong>Color:</strong> {{ accesorio.color }}</p>
+                      <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
+                      <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
+                      <p><strong>Categoria:</strong> {% for category in accesorio.categories.all %}{{ category.name }} / {% endfor %}</p>
+                      <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
                   </div>
-                  {%  endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+                  <div class="card-footer">
+                      {% if user.is_staff %}
+                      <form method="POST" action="{% url 'eliminar_accesorio' %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
+                          <button type="submit" class="btn btn-primary">
+                              <ion-icon name="trash-outline"></ion-icon>
+                          </button>
+                      </form>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+          {%  endfor %}
+      </div>
+  </div>
 </div>
 
-
-
-
+    </div>
+</div>
 
 
 
