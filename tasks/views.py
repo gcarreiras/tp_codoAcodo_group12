@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 , get_list_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm, ContactForm, LoginForm
 from django.contrib import messages
 from django.urls import reverse
-from .models import User, Accessory , Brand
+from .models import User, Accessory , Brand , Category
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -29,7 +29,7 @@ def index(request):
    
     else:
         contact_form = ContactForm()
-    print('is_accesories_page', is_accesories_page)
+
     return render(request, 'index.html',{'contact_form': contact_form, 'login_form':login_form , 'is_accesories_page': is_accesories_page})
 
 def login_user(request):
@@ -50,7 +50,6 @@ def login_user(request):
 
 
 def logout_user(request):
-    print('estoy en el logout')
     logout(request)
     messages.success(request, ("Deslogueado"))
     return redirect('index')
@@ -59,11 +58,12 @@ def logout_user(request):
 @login_required
 def accesories(request):
     brands = Brand.objects.all()
+    categories = Category.objects.all()
     login_form= LoginForm()
     accessory = Accessory.objects.all()
     is_accesories_page = True
 
-    return render(request, 'accesories.html', {'accessory': accessory , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands})
+    return render(request, 'accesories.html', {'accessory': accessory , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands , 'categories' : categories})
 
 def cars(request):
     return render(request, 'cars.html')
@@ -77,40 +77,32 @@ def signup(request):
     login_form = LoginForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             # Crear un nuevo usuario
             new_user = User.objects.create_user(username=username, password=password)
             new_user.email = form.cleaned_data['email']
-            #new_user.first_name = form.cleaned_data['first_name']
-            #new_user.last_name = form.cleaned_data['last_name']
-            new_user.save()
-            
+            new_user.save()          
             messages.success(request, "Registro exitoso!")
             return redirect('index')
+    
     else:
         form = RegisterForm()
     return render(request, 'signup.html', {'form': form, 'login_form':login_form})
+
 
 
 #///////////// add accesory from modal //////////////////////////////////
 
 def add_accessory(request):
    
-    # brand_name = request.POST.get('brand')
-    # brand = get_object_or_404(Brand, brand=brand_name)
 
-    # if request.method == 'POST':
-    #     name = request.POST.get('name')
-    #     color = request.POST.get('color')
-    #     brand = request.POST.get('brand')
-    #     description = request.POST.get('description')
-    #     image = request.FILES.get('image')
-    #     price = request.POST.get('price')
     if request.method == 'POST':
+        category_names = request.POST.getlist('categories')
+        categories = get_list_or_404(Category, name__in=category_names)
         brand_name = request.POST.get('brand')
-        print('BRAND NAME:', brand_name)
         name = request.POST.get('name')
         color = request.POST.get('color')
         brand_name = request.POST.get('brand')
@@ -129,12 +121,13 @@ def add_accessory(request):
         )
         
         accessory.save()
+        accessory.categories.set(categories)
+
     return redirect('accesories')
 
 
-    #return render(request, 'accesories.html')
-
 # //////////////// end add accesory //////////////////////////////////
+
 
 @require_POST
 def eliminar_accesorio(request):
@@ -143,7 +136,10 @@ def eliminar_accesorio(request):
     eliminar.delete()
     return redirect('accesories')
 
+
 def buscar_accesorios(request):
+    
+    
     nombre = request.GET.get('nombre')
 
     accesorios = Accessory.objects.filter(name__icontains=nombre)
