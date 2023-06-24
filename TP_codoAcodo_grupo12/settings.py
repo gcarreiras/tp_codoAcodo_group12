@@ -79,7 +79,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'PIG',
          'USER': 'postgres',
-         'PASSWORD': '123456789',
+         'PASSWORD': '1234',
          'HOST': 'localhost',
          'PORT': '5432',
     }
@@ -123,6 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#NECESARIO PARA MANEJO DE IMAGENES EN BD
+MEDIA_URL = '/pics/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/pics')
 
 STATICFILES_DIRS = [
     'tasks\static',
