@@ -134,10 +134,12 @@
               <div class="accCard">
                   <div class="card-header">{{ accesorio.name }}</div>
                   <div class="card-body">
+                      <p><img src="{{ accesorio.image.url }}" alt="nada" style="max-width: 100%; height: auto;"></p>
                       <p><strong>Color:</strong> {{ accesorio.color }}</p>
                       <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
                       <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
                       <p><strong>Categoria:</strong> {% for category in accesorio.categories.all %}{{ category.name }} / {% endfor %}</p>
+                      <!-- <a href="#"><img src="{{ accesorio.image.url }}" alt="nada"></a> -->
                       <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
                   </div>
                   <div class="card-footer">

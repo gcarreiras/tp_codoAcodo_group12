@@ -29,7 +29,7 @@ class Accessory(models.Model):
     color = models.CharField(max_length=50, verbose_name='Accessory color')
     brands = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='Brand')
     description = models.CharField(max_length=100, verbose_name='Accessory description')
-    image = models.FileField(verbose_name='Accessory image', null=True)
+    image = models.ImageField(null=True, blank=True, verbose_name='Accessory image')
     price = models.FloatField(verbose_name='Accessory price')
     categories = models.ManyToManyField(Category, verbose_name='Categories')
    
