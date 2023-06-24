@@ -56,7 +56,7 @@ def logout_user(request):
     return redirect('index')
 
 
-@login_required
+@login_required(login_url='index')
 def accesories(request):
     brands = Brand.objects.all()
     categories = Category.objects.all()
@@ -150,6 +150,7 @@ def buscar_accesorios(request):
 
 
 def buscar_acc_brand_cat(request):
+    
     brand_names = request.GET.getlist('marca')  
     category_names = request.GET.getlist('categories')
     categories = Category.objects.all()
