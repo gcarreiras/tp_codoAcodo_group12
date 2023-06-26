@@ -26,8 +26,12 @@
             <p class="fs-6">Amplia selección de vehiculos, las mejores marcas del mercado.</p>
             <div class="boton_container">
                 <form class="container-fluid justify-content-start">
-                    <button class="btn bg-danger text-white" type="button">Conoce mas</button>
-                    <button class="btn bg-black text-white me-2" type="button">Accesorios Originales</button>
+                    <a href="{% url 'index' %}#vehiculos">
+                        <button class="btn bg-danger text-white" type="button">Conoce mas</button>
+                    </a>
+                    <a href="{% url 'accesories' %}">
+                        <button class="btn bg-black text-white me-2" type="button">Accesorios Originales</button>
+                    </a>
                 </form>
             </div>
         </div>
@@ -40,8 +44,7 @@
     <a id="vehiculos"></a>
     <section class="section bg-light" id="section 2">
         <div class="container_logos">
-            <!-- <a href="#" id="chevrolet" class="marcas1" data-target="card_wrapper_chevrolet"><span></span></a>
-            <a href="#" id="ford" class="marcas2" data-target="card_wrapper_ford"><span></span></a> -->
+        
             <span class="marcas1" id="marcas1"></span>
             <span class="marcas2" id="marcas2"></span>
             <span class="marcas3" id="marcas3"></span>
@@ -50,7 +53,7 @@
         <div class="card_wrapper_chevrolet" id="wrapper_chevrolet">
             <div class="card"; 
             background-color: #f1f1f1;
-            transition: transform 0.3s ease;">
+            transition: transform 0.3s ease;>
                 <img src="../static/img/chevrolet-autos-nuevo-onix-v1.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text h3">Chevrolet Onix</p>

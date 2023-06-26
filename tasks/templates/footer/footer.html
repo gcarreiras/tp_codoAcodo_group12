@@ -12,10 +12,10 @@
                 <div class="col-lg-2 col-md-6">
                     <h5 class="text-black mb-3">Quick links</h5>
                     <ul class="list-unstyled text-muted">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Vehiculos</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'index' %}#vehiculos">Vehiculos</a></li>
+                        <li><a href="{% url 'accesories' %}">Accesorios</a></li>
+                        <li><a href="{% url 'index' %}#contacto">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-7">
