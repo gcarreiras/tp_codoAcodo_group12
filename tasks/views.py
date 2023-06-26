@@ -171,3 +171,7 @@ def buscar_acc_brand_cat(request):
             categories = Category.objects.all()
 
     return render(request, 'accesories.html', {'accessory': accesorios, 'categories': categories})
+
+def consulta_enviada(request, nombre):
+    nombre = request.POST.get('name', '')
+    return render(request, 'consulta_enviada.html', {'nombre': nombre})

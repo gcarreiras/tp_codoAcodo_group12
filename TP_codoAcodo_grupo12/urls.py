@@ -35,6 +35,7 @@ urlpatterns = [
     path('login/', views.login_user , name='login'),
     path('logout/', views.logout_user, name='logout'),
     path('accesories/add', views.add_accessory, name='add_accessory'),
+    path('consulta-enviada/<str:nombre>/', views.consulta_enviada, name='consulta_enviada'),
 ]
 #RUTA PARA PODER MOSTRAR LAS IMAGENES
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
