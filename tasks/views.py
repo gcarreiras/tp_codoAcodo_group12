@@ -174,4 +174,4 @@ def buscar_acc_brand_cat(request):
 
 def consulta_enviada(request, nombre):
     nombre = request.POST.get('name', '')
-    return render(request, 'consulta_enviada.html', {'nombre': nombre})
+    return render(request, 'consulta/consulta_enviada.html', {'nombre': nombre})
