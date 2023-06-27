@@ -127,40 +127,56 @@
         
 <div class="col-md-9">
   <div>
-      <h1>Accesorios Originales</h1>
-      <div class="row">
-          {% for accesorio in accessory %}
-          <div class="col-6 col-md-4">
-              <div class="accCard">
-                  <div class="card-header">{{ accesorio.name }}</div>
-                  <div class="card-body">
-                      <p><img src="{{ accesorio.image.url }}" alt="nada" style="max-width: 100%; height: auto;"></p>
-                      <p><strong>Color:</strong> {{ accesorio.color }}</p>
-                      <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
-                      <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
-                      <p><strong>Categoria:</strong> {% for category in accesorio.categories.all %}{{ category.name }} / {% endfor %}</p>
-                      <!-- <a href="#"><img src="{{ accesorio.image.url }}" alt="nada"></a> -->
-                      <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
-                  </div>
-                  <div class="card-footer">
-                      {% if user.is_staff %}
-                      <form method="POST" action="{% url 'eliminar_accesorio' %}">
-                          {% csrf_token %}
-                          <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
-                          <button type="submit" class="btn btn-primary">
-                              <ion-icon name="trash-outline"></ion-icon>
-                          </button>
-                      </form>
-                      {% endif %}
-                  </div>
+    <h1>Accesorios Originales</h1>
+    <div class="row">
+      {% for accesorio in page_obj %}
+        <div class="col-6 col-md-4">
+          <div class="accCard">
+            <div class="card-header">{{ accesorio.name }}</div>
+            <div class="card-body">
+              <div class="image-container">
+                <div class="image-wrapper">
+                  <img src="{{ accesorio.image.url }}" alt="nada" class="card-image">
+                </div>
               </div>
+              <p><strong>Color:</strong> {{ accesorio.color }}</p>
+              <p><strong>Marca:</strong> {{ accesorio.brands.name }}</p>
+              <p><strong>Descripción:</strong> {{ accesorio.description }}</p>
+              <p><strong>Categoria:</strong>
+                {% for category in accesorio.categories.all %}
+                  {{ category.name }} /
+                {% endfor %}
+              </p>
+              <p><strong>Precio:</strong> ${{ accesorio.price }}</p>      
+            </div>
+            <div class="card-footer align-items-end">
+              {% if user.is_staff %}
+                <form method="POST" action="{% url 'eliminar_accesorio' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="accesorio_id" value="{{ accesorio.id }}">
+                  <button type="submit" class="btn btn-primary btn-delete">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </button>
+                </form>
+              {% endif %}
+            </div>
           </div>
-          {%  endfor %}
-      </div>
-  </div>
-</div>
-
+        </div>
+      {% endfor %}
     </div>
+    <div class="pagination-container"></div>
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+        <a href="?{{ page_obj.query_params.urlencode }}&page={{ page_obj.previous_page_number }}">Anterior</a>
+      {% endif %}
+    
+      <span class="current-page">{{ page_obj.number }}</span>
+    
+      {% if page_obj.has_next %}
+        <a href="?{{ page_obj.query_params.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 
