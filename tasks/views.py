@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.db.models import Q
+from django.core.paginator import Paginator
+from django.http import QueryDict
 
 
 def index(request):
@@ -56,15 +58,6 @@ def logout_user(request):
     return redirect('index')
 
 
-@login_required(login_url='index')
-def accesories(request):
-    brands = Brand.objects.all()
-    categories = Category.objects.all()
-    login_form= LoginForm()
-    accessory = Accessory.objects.all()
-    is_accesories_page = True
-
-    return render(request, 'accesories.html', {'accessory': accessory , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands , 'categories' : categories})
 
 def cars(request):
     return render(request, 'cars.html')
@@ -137,20 +130,32 @@ def eliminar_accesorio(request):
     eliminar.delete()
     return redirect('accesories')
 
+@login_required(login_url='index')
+def accesories(request):
+    brands = Brand.objects.all()
+    categories = Category.objects.all()
+    login_form= LoginForm()
+    accessory = Accessory.objects.all().order_by('id')
+    is_accesories_page = True
+    paginator = Paginator(accessory, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'accesories.html', {'page_obj': page_obj , 'login_form': login_form, 'is_accesories_page': is_accesories_page, 'brands': brands , 'categories' : categories})
 
 def buscar_accesorios(request):
-    
-    
     nombre = request.GET.get('nombre')
-
     accesorios = Accessory.objects.filter(name__icontains=nombre)
     categories = Category.objects.all()
-    
-    return render(request, 'accesories.html', {'accessory': accesorios, 'categories': categories})
+
+    # Agregar los parámetros de filtro a los enlaces de paginación
+    page_obj = get_paginated_results(request, accesorios)
+    page_obj.query_params = request.GET.copy()
+
+    return render(request, 'accesories.html', {'page_obj': page_obj, 'categories': categories})
 
 
 def buscar_acc_brand_cat(request):
-    
     brand_names = request.GET.getlist('marca')  
     category_names = request.GET.getlist('categories')
     categories = Category.objects.all()
@@ -158,19 +163,24 @@ def buscar_acc_brand_cat(request):
     if brand_names:
         brands = Brand.objects.filter(name__in=brand_names)  
         accesorios = Accessory.objects.filter(brands__in=brands)
-
-        if category_names:
-            categories = categories.filter(name__in=category_names)
-            accesorios = accesorios.filter(categories__in=categories)
     else:
-        if category_names:
-            categories = categories.filter(name__in=category_names)
-            accesorios = Accessory.objects.filter(categories__in=categories)
-        else:
-            accesorios = Accessory.objects.all()
-            categories = Category.objects.all()
+        accesorios = Accessory.objects.all()
 
-    return render(request, 'accesories.html', {'accessory': accesorios, 'categories': categories})
+    if category_names:
+        categories = categories.filter(name__in=category_names)
+        accesorios = accesorios.filter(categories__in=categories)
+
+    # Agregar los parámetros de filtro a los enlaces de paginación
+    page_obj = get_paginated_results(request, accesorios)
+    page_obj.query_params = request.GET.copy()
+
+    return render(request, 'accesories.html', {'page_obj': page_obj, 'categories': categories})
+
+
+def get_paginated_results(request, queryset):
+    paginator = Paginator(queryset, 3)
+    page_number = request.GET.get('page')
+    return paginator.get_page(page_number)
 
 def consulta_enviada(request, nombre):
     nombre = request.POST.get('name', '')
