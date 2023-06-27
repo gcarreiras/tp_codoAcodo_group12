@@ -8,7 +8,6 @@
 # Integrantes:
 # - Carreiras Gaston
 # - Castilla Martin
-# - Cisneros Alexander
 # - Gramajo Alejandro
 # - Guerrero Federico
 
