@@ -1,0 +1,42 @@
+{% load static %}
+{% include '../header/header2.html' %} 
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/consulta_enviada.css' %}">
+{% endblock %}
+
+
+<body>   
+    <main>
+
+        {% block content %}
+        <div class="container">
+            <div class="content">
+
+                <h1>
+                    Su consulta fue enviada
+                </h1>
+                <p>Gracias <b>{{nombre}}</b>, su consulta sera respondida a la brevedad por uno de nuestros representantes.</p>        
+                <a href="{% url 'index' %}">Regresar al índice</a>
+                    
+            </div>
+               
+        </div>    
+            {% endblock %}
+    
+    </main>
+    
+    {% include '../footer/footer.html' %}
+    
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
