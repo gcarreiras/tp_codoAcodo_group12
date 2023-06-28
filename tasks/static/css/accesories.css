@@ -11,7 +11,14 @@
   height: 550px;
   overflow: hidden;
 }
+h6{
 
+  margin-top: 20px;
+}
+
+h1{
+  text-align: center;
+}
 .accCard:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -62,7 +69,7 @@
 }
 
 .card-image-container {
-  height: 200px; /* Establece la altura deseada para el contenedor de la imagen */
+  height: 200px; 
   overflow: hidden;
 }
 

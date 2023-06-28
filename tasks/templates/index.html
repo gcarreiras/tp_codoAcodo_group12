@@ -130,7 +130,7 @@
    
     <div class="contact">
         {% include 'bootstrap_alerts.html' %}
-        <form action="{% url 'consulta_enviada' nombre=contact_form.name.value %}" method="POST">
+        <form action="{% url 'consulta_enviada' nombre=contact_form.name.value %}" method="POST" autocomplete="off">
             {% csrf_token %}
                 <p>Nombre</p>
                     {{ contact_form.name }}
