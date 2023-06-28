@@ -45,7 +45,7 @@ def login_user(request):
             print('usuario correcto')
             login(request, user)
             return render(request, 'index.html',  {'contact_form': contact_form})
-            # return render(request, 'index.html',{'user': user, 'contact_form': contact_form})
+
         else:
             print('usuario incorrecto')
             messages.error(request, "Error de inicio de sesión")
